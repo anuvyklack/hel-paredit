@@ -1,6 +1,6 @@
-;;; hel-paredit.el --- Extend Hel for Lisp s-exps editing -*- lexical-binding: t -*-
+;;; hel-paredit.el                                    -*- lexical-binding: t -*-
 ;;
-;; Copyright (C) 2025 Yuriy Artemyev
+;; Copyright (C) 2025-2026 Yuriy Artemyev
 ;;
 ;; Author: Yuriy Artemyev <anuvyklack@gmail.com>
 ;; Maintainer: Yuriy Artemyev <anuvyklack@gmail.com>

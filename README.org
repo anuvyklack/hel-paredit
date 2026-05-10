@@ -1,6 +1,6 @@
 * hel-paredit
 
-[[https://github.com/anuvyklack/hel][Hel]] extension for Lisp S-expression editing.
+[[https://github.com/anuvyklack/hel][Hel]] extension for structural editing of Lisp S-expressions.
 
 ** Install
 
@@ -13,24 +13,24 @@
   :hook (emacs-lisp-mode-hook . hel-paredit-mode))
 #+end_src
 
-** Usage
+** Keybindings
+
+- =W=, =B=, =E=, =miW=, =maW= :: WORD text objects that ignore parentheses.
+
+- =d= / =D= ::
+  Refuses to *cut* / *delete* if doing so would leave unbalanced parentheses.
+
 *** Structural editing of S-expressions
 
 The most noticeable feature is "AST" climbing (in quotes because Lisp code *is*
 its AST — which is yet another reason why Lisp is superior):
 
-+ =M-i= / =M-o= or =C-j= / =C-k= — select a *nested* / *enclosing* AST node.
++ =C-h= / =C-l= or =M-i= / =M-o= — select a *nested* / *enclosing* AST node.
 
-+ =M-p= / =M-n= or =C-h= / =C-l= — select the *previous* / *next* AST node.
++ =C-j= / =C-k= or =M-n= / =M-p= — select the *next* / *previous* AST node.
 
 + =H= / =L= — select the enclosing node in the AST and place the cursor
   *before* / *after* it.
-
-#+begin_quote
-[!NOTE]
-To enable the =C-h=, =C-j=, =C-k=, =C-l= keys, set ~hel-want-C-hjkl-keys~ to ~t~ before Hel
-is loaded (this is the default).
-#+end_quote
 
 Try it yourself. Since I started using it, I have no idea how I ever edited
 without it — it’s one of the best and most natural ways to work with
@@ -44,11 +44,6 @@ S-expressions.
   quite intuitive — give it a try. Inspired by [[https://github.com/emacs-evil/evil-cleverparens][evil-cleverparens]].
 
 *** Other
-
-- =W=, =B=, =E=, =miW=, =maW= :: WORD text objects ignore parentheses.
-
-- =d= / =D= ::
-  Refuses to *cut* / *delete* if doing so would leave unbalanced parentheses.
 
 - =M-r= :: Raise S-expression.
 
