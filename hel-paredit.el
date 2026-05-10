@@ -32,9 +32,9 @@
   "B" 'hel-paredit-backward-WORD-start
   "E" 'hel-paredit-forward-WORD-end
 
-  "m W"   'hel-paredit-mark-inner-WORD
-  "m i W" 'hel-paredit-mark-inner-WORD
-  "m a W" 'hel-paredit-mark-a-WORD
+  "m W"   '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
+  "m i W" '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
+  "m a W" '("mark-a-WORD" . hel-paredit-mark-a-WORD)
 
   "d" 'hel-paredit-cut
   "D" 'hel-paredit-delete
