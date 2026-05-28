@@ -22,15 +22,19 @@
 
 *** Structural editing of S-expressions
 
-The most noticeable feature is "AST" climbing (in quotes because Lisp code *is*
-its AST — which is yet another reason why Lisp is superior):
+The most noticeable feature is "AST" climbing (in quotes because Lisp code
+*is* its AST — which is yet another reason why Lisp is superior):
 
-+ =C-h= / =C-l= or =M-i= / =M-o= — select a *nested* / *enclosing* AST node.
++ =C-j= / =C-k= or =M-i= / =M-o= ::
+  Select a *nested* / *enclosing* AST node. The mnemonic or mental model:
+  - =C-j= / =C-k= — down / up
+  - =M-i= / =M-o= — inside / outside
 
-+ =C-j= / =C-k= or =M-n= / =M-p= — select the *next* / *previous* AST node.
++ =C-h= / =C-l= or =M-n= / =M-p= ::
+  Select the *next* / *previous* AST node.
 
-+ =H= / =L= — select the enclosing node in the AST and place the cursor
-  *before* / *after* it.
++ =H= / =L= ::
+  Select the enclosing node in the AST and place the cursor *before* / *after* it.
 
 Try it yourself. Since I started using it, I have no idea how I ever edited
 without it — it’s one of the best and most natural ways to work with
