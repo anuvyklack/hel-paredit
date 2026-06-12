@@ -258,7 +258,7 @@ and brackets."
                 (goto-char (paredit-next-up/down-point dir +1))
               (scan-error (user-error "No sexp up"))))
         (-when-let ((beg . end) (bounds-of-thing-at-point sexp))
-          (hel-set-region beg end count))))
+          (hel-set-region beg end dir))))
     (hel-reveal-point-when-on-top)))
 
 ;; M-o or C-k or H
