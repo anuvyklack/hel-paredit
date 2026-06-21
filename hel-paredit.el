@@ -345,18 +345,18 @@ text. With a prefix argument COUNT, move up COUNT lists before wrapping.
 ;; gc
 (hel-advice-add 'paredit-comment-dwim :around #'hel-keep-selection-a)
 
-(dolist (cmd '(paredit-comment-dwim     ; M-; or gc
-               paredit-raise-sexp       ; M-r
-               paredit-newline          ; RET
-               paredit-semicolon        ; ;
-               paredit-doublequote      ; "
-               paredit-meta-doublequote ; M-"
-               paredit-backslash        ; \
-               paredit-open-round       ; (
-               paredit-close-round      ; )
-               paredit-open-square      ; [
-               paredit-close-square))   ; ]
-  (put cmd 'multiple-cursors t))
+(mapc #'hel-set-multiple-cursors-command
+      '(paredit-comment-dwim     ; M-; or gc
+        paredit-raise-sexp       ; M-r
+        paredit-newline          ; RET
+        paredit-semicolon        ; ;
+        paredit-doublequote      ; "
+        paredit-meta-doublequote ; M-"
+        paredit-backslash        ; \
+        paredit-open-round       ; (
+        paredit-close-round      ; )
+        paredit-open-square      ; [
+        paredit-close-square))   ; ]
 
 ;;; Slurpage & Barfage
 
