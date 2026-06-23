@@ -13,7 +13,7 @@
 ;;; Code:
 
 (eval-when-compile (require 'hel-macros))
-(require 'hel-common)
+(require 'hel-lib)
 (require 'hel-core)
 (require 'paredit)
 
