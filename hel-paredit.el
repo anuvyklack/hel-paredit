@@ -1,4 +1,4 @@
-;;; hel-paredit.el                                    -*- lexical-binding: t -*-
+;;; hel-paredit.el --- Hel integration with Paredit -*- lexical-binding: t -*-
 ;;
 ;; Copyright (C) 2025-2026 Yuriy Artemyev
 ;;
@@ -6,13 +6,20 @@
 ;; Maintainer: Yuriy Artemyev <anuvyklack@gmail.com>
 ;; Version: 0.10.0
 ;; Homepage: https://github.com/anuvyklack/hel-paredit
-;; Package-Requires: ((emacs "29.1"))
+;; Package-Requires: ((emacs "29.1") (hel "0.12.0") (paredit "26") (dash "2.19.1"))
+;; SPDX-License-Identifier: GPL-3.0-or-later
 ;;
 ;; This file is not part of GNU Emacs.
+;;
+;;; Commentary:
+;;
+;; Hel integration with Paredit: sexp-aware motions, selections and
+;; structural editing commands bound in Hel's Normal state.
 ;;
 ;;; Code:
 
 (eval-when-compile (require 'hel-macros))
+(eval-when-compile (require 'dash))
 (require 'hel-lib)
 (require 'hel-core)
 (require 'paredit)
@@ -97,7 +104,9 @@
   (nth 8 (or state (paredit-current-parse-state))))
 
 ;; `hel-paredit-sexp' thing
-(defun forward-hel-paredit-sexp (&optional count)
+(put 'hel-paredit-sexp 'forward-op #'hel-paredit--forward-sexp)
+
+(defun hel-paredit--forward-sexp (&optional count)
   "Move forward across COUNT S-expressions (sexp).
 If COUNT is negative — move backward."
   (hel-motion-loop (dir (or count 1))
@@ -115,7 +124,9 @@ If COUNT is negative — move backward."
            (ignore-errors (forward-sexp dir))))))
 
 ;; `hel-paredit-WORD' thing
-(defun forward-hel-paredit-WORD (&optional count)
+(put 'hel-paredit-WORD 'forward-op #'hel-paredit--forward-WORD)
+
+(defun hel-paredit--forward-WORD (&optional count)
   (hel-motion-loop (dir (or count 1))
     (hel-skip-chars "\r\n" dir)
     (hel-skip-chars " \t()[]" dir)
@@ -367,9 +378,9 @@ text. With a prefix argument COUNT, move up COUNT lists before wrapping.
   (interactive "p")
   (let (deactivate-mark)
     (cond ((memql (following-char) '(?\( ?\[ ?{))
-           (hel-paredit-opening-slurp/barf (- count)))
+           (hel-paredit-opening-slurp-barf (- count)))
           ((memql (preceding-char) '(?\) ?\] ?}))
-           (hel-paredit-closing-slurp/barf (- count))))))
+           (hel-paredit-closing-slurp-barf (- count))))))
 
 ;; >
 (hel-define-command hel-paredit-> (count)
@@ -378,11 +389,11 @@ text. With a prefix argument COUNT, move up COUNT lists before wrapping.
   (interactive "p")
   (let (deactivate-mark)
     (cond ((memql (following-char) '(?\( ?\[ ?{))
-           (hel-paredit-opening-slurp/barf count))
+           (hel-paredit-opening-slurp-barf count))
           ((memql (preceding-char) '(?\) ?\] ?}))
-           (hel-paredit-closing-slurp/barf count)))))
+           (hel-paredit-closing-slurp-barf count)))))
 
-(defun hel-paredit-opening-slurp/barf (count)
+(defun hel-paredit-opening-slurp-barf (count)
   "Slurp/barf beginning of the list COUNT times.
 The point must located right before the opening bracket."
   (if (or (paredit-in-comment-p)
@@ -407,7 +418,7 @@ The point must located right before the opening bracket."
           (lisp-indent-line)
           (indent-sexp))))))
 
-(defun hel-paredit-closing-slurp/barf (count)
+(defun hel-paredit-closing-slurp-barf (count)
   "Slurp/barf end of the list COUNT times.
 The point must located right after the closing bracket."
   (if (or (paredit-in-comment-p)
