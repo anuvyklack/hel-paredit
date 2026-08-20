@@ -35,39 +35,39 @@
 ;;;; Keybindings
 
 (hel-keymap-set hel-paredit-mode-map :state 'normal
-  "W" 'hel-paredit-forward-WORD-start
-  "B" 'hel-paredit-backward-WORD-start
-  "E" 'hel-paredit-forward-WORD-end
+  "W"      'hel-paredit-forward-WORD-start
+  "B"      'hel-paredit-backward-WORD-start
+  "E"      'hel-paredit-forward-WORD-end
 
-  "m W"   '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
-  "m i W" '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
-  "m a W" '("mark-a-WORD" . hel-paredit-mark-a-WORD)
+  "m W"    '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
+  "m i W"  '("mark-inner-WORD" . hel-paredit-mark-inner-WORD)
+  "m a W"  '("mark-a-WORD" . hel-paredit-mark-a-WORD)
 
-  "d" 'hel-paredit-cut
-  "D" 'hel-paredit-delete
+  "d"      'hel-paredit-cut
+  "D"      'hel-paredit-delete
 
-  "M-i" 'hel-paredit-down-sexp
-  "M-o" 'hel-paredit-up-sexp-backward
-  "M-n" 'hel-paredit-forward-sexp
-  "M-p" 'hel-paredit-backward-sexp
+  "M-i"    'hel-paredit-down-sexp
+  "M-o"    'hel-paredit-up-sexp-backward
+  "M-n"    'hel-paredit-forward-sexp
+  "M-p"    'hel-paredit-backward-sexp
 
-  "H"   'hel-paredit-up-sexp-backward
-  "L"   'hel-paredit-up-sexp-forward
+  "H"      'hel-paredit-up-sexp-backward
+  "L"      'hel-paredit-up-sexp-forward
 
-  "M-r" 'paredit-raise-sexp
-  "M-?" 'hel-paredit-convolute-sexp
-  "<"   'hel-paredit-<
-  ">"   'hel-paredit->
-  "g c" 'paredit-comment-dwim
+  "M-r"    'paredit-raise-sexp
+  "M-?"    'hel-paredit-convolute-sexp
+  "<"      'hel-paredit-<
+  ">"      'hel-paredit->
+  "g c"    'paredit-comment-dwim
   ;; "g q" 'paredit-reindent-defun
   )
 
 (when hel-want-C-hjkl-keys
   (hel-keymap-set hel-paredit-mode-map :state 'normal
-    "C-h" 'hel-paredit-backward-sexp
-    "C-j" 'hel-paredit-down-sexp
-    "C-k" 'hel-paredit-up-sexp-backward
-    "C-l" 'hel-paredit-forward-sexp))
+    "C-h"  'hel-paredit-backward-sexp
+    "C-j"  'hel-paredit-down-sexp
+    "C-k"  'hel-paredit-up-sexp-backward
+    "C-l"  'hel-paredit-forward-sexp))
 
 ;; Bind Enter in Normal and Insert states instead of at the keymap root to avoid
 ;; interfering with other minor modes that may bind it, such as `magit-blame-mode'.
@@ -87,15 +87,15 @@
   "C-M-<right>" 'paredit-backward-slurp-sexp)
 
 (hel-keymap-set hel-paredit-mode-map :state 'insert
-  ";"    'paredit-semicolon
-  "\""   'paredit-doublequote
-  "M-\"" 'paredit-meta-doublequote
-  "\\"   'paredit-backslash
-  "M-;"  'paredit-comment-dwim
-  "("    'paredit-open-round
-  ")"    'paredit-close-round
-  "["    'paredit-open-square
-  "]"    'paredit-close-square)
+  ";"      'paredit-semicolon
+  "\""     'paredit-doublequote
+  "M-\""   'paredit-meta-doublequote
+  "\\"     'paredit-backslash
+  "M-;"    'paredit-comment-dwim
+  "("      'paredit-open-round
+  ")"      'paredit-close-round
+  "["      'paredit-open-square
+  "]"      'paredit-close-square)
 
 ;;; Common
 
