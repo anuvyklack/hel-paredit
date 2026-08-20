@@ -29,8 +29,7 @@
 ;;;###autoload (autoload 'hel-paredit-mode "hel-paredit" nil t)
 (define-minor-mode hel-paredit-mode
   "Hel integration with Paredit."
-  :keymap (make-sparse-keymap)
-  (hel-update-active-keymaps))
+  :keymap (make-sparse-keymap))
 
 ;;;; Keybindings
 
