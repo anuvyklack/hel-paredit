@@ -69,11 +69,6 @@
     "C-k"  'hel-paredit-up-sexp-backward
     "C-l"  'hel-paredit-forward-sexp))
 
-;; Bind Enter in Normal and Insert states instead of at the keymap root to avoid
-;; interfering with other minor modes that may bind it, such as `magit-blame-mode'.
-(hel-keymap-set hel-paredit-mode-map :state '(normal insert)
-  "RET" 'default-indent-new-line)
-
 (hel-keymap-set hel-paredit-mode-map
   "C-M-f"       'paredit-forward       ; `forward-sexp'
   "C-M-b"       'paredit-backward      ; `backward-sexp'
